@@ -13,6 +13,6 @@ movies <- read_csv("data/movies.csv")
 ```
 
 ```{r}
-movies |>
-  summarise(across(everything(), \(x) sum(is.na(x))))
+movies_clean <- movies |>
+  separate_rows(genre, sep = "\\s*,\\s*")
 ```

@@ -13,6 +13,7 @@ movies <- read_csv("data/movies.csv")
 ```
 
 ```{r}
+#| cache: true
 movies_clean <- movies |>
   separate_rows(genre, sep = "\\s*,\\s*")
 ```

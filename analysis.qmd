@@ -19,6 +19,9 @@ movies_clean <- movies |>
 ```
 
 ```{r}
-movies_clean |>
-  count(genre, sort = TRUE)
+movies |>
+  summarise(
+    audienceScore = mean(audienceScore, na.rm = TRUE),
+    tomatoMeter = mean(tomatoMeter, na.rm = TRUE)
+  )
 ```

@@ -35,8 +35,8 @@ movies_gap <- movies_clean |>
 
 movies_gap |>
   distinct(across(-genre), .keep_all = TRUE) |>
-  filter(gap > 0) |>
-  arrange(desc(gap)) |>
+  filter(gap < 0) |>
+  arrange(gap) |>
   select(title, audienceScore, tomatoMeter, gap) |>
   slice_head(n = 8)
 ```

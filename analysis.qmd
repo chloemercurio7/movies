@@ -84,8 +84,10 @@ spiderman <- movies |>
       ) ~ "Tom Holland"
     )
   ) |>
+  mutate(gap = tomatoMeter - audienceScore) |>
   arrange(releaseDateTheaters)
 
 spiderman |>
-  select(title, releaseDateTheaters, actor, audienceScore, tomatoMeter)
+  arrange(desc(gap)) |>
+  select(title, actor, gap)
 ```

@@ -88,6 +88,26 @@ spiderman <- movies |>
   arrange(releaseDateTheaters)
 
 spiderman |>
-  arrange(desc(gap)) |>
-  select(title, actor, gap)
+  arrange(releaseDateTheaters) |>
+  pivot_longer(
+    cols = c(tomatoMeter, audienceScore),
+    names_to = "score_type",
+    values_to = "score"
+  ) |>
+  mutate(
+    score_type = recode(
+      score_type,
+      tomatoMeter = "Tomatometer",
+      audienceScore = "Audience score"
+    )
+  ) |>
+  ggplot(aes(x = releaseDateTheaters, y = score, color = score_type, group = score_type)) +
+  geom_line() +
+  geom_point() +
+  labs(
+    title = "Audiences rated 5 of 8 Spider-Man films higher than critics",
+    x = "Release date",
+    y = "Score",
+    color = "Score source"
+  )
 ```

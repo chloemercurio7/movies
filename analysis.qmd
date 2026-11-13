@@ -60,3 +60,32 @@ ggplot(
     y = "Genre"
   )
 ```
+
+```{r}
+spiderman <- movies |>
+  filter(title %in% c(
+    "Spider-Man",
+    "Spider-Man 2",
+    "Spider-Man 3",
+    "The Amazing Spider-Man",
+    "The Amazing Spider-Man 2",
+    "Spider-Man: Homecoming",
+    "Spider-Man: Far From Home",
+    "Spider-Man: No Way Home"
+  )) |>
+  mutate(
+    actor = case_when(
+      title %in% c("Spider-Man", "Spider-Man 2", "Spider-Man 3") ~ "Tobey Maguire",
+      title %in% c("The Amazing Spider-Man", "The Amazing Spider-Man 2") ~ "Andrew Garfield",
+      title %in% c(
+        "Spider-Man: Homecoming",
+        "Spider-Man: Far From Home",
+        "Spider-Man: No Way Home"
+      ) ~ "Tom Holland"
+    )
+  ) |>
+  arrange(releaseDateTheaters)
+
+spiderman |>
+  select(title, releaseDateTheaters, actor, audienceScore, tomatoMeter)
+```

@@ -17,3 +17,8 @@ movies <- read_csv("data/movies.csv")
 movies_clean <- movies |>
   separate_rows(genre, sep = "\\s*,\\s*")
 ```
+
+```{r}
+movies_clean |>
+  count(genre, sort = TRUE)
+```

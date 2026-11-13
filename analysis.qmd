@@ -19,9 +19,12 @@ movies_clean <- movies |>
 ```
 
 ```{r}
-movies |>
-  summarise(
-    audienceScore = mean(audienceScore, na.rm = TRUE),
-    tomatoMeter = mean(tomatoMeter, na.rm = TRUE)
+ggplot(movies, aes(x = tomatoMeter)) +
+  geom_histogram(binwidth = 10, boundary = 0) +
+  labs(
+    title = "Distribution of Tomatometer Scores",
+    subtitle = paste("Films with a score:", sum(!is.na(movies$tomatoMeter))),
+    x = "Tomatometer Score",
+    y = "Count"
   )
 ```
